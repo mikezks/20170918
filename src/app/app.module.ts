@@ -1,4 +1,4 @@
-import { SharedModule } from './shared/shared.module';
+import { FlightSearchModule } from './flight-search/flight-search.module';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,11 +16,10 @@ import { MouseMoveComponent } from './mouse-move/mouse-move.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    SharedModule
+    FlightSearchModule
   ],
   declarations: [
     AppComponent,
-    FlightSearchComponent,
     MouseMoveComponent
   ],
   providers: [
