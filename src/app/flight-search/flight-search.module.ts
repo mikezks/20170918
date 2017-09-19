@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
-import { FlightSearchComponent } from "./flight-search.components";
+import { FlightSearchComponent } from "../flight-search/flight-search.components";
+import { FlightCardComponent } from "../flight-search/flight-card.component";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        SharedModule // <-- Kommt mit CityPipe
+        SharedModule
     ],
     declarations: [
-        FlightSearchComponent
+        FlightSearchComponent,
+        FlightCardComponent
     ],
     providers: [],
     exports: [
