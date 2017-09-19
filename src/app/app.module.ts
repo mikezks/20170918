@@ -13,8 +13,7 @@ import { BASE_URL } from "app/app.tokens";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,
-    HttpModule
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
