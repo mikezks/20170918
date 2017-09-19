@@ -4,10 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import 'rxjs/add/observable/timer';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/sample';
+import './rxjs-imports';
 
 if (environment.production) {
   enableProdMode();

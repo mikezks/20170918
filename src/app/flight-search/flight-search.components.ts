@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from "app/entities/flight";
 
+
 import { Http, URLSearchParams, Headers } from "@angular/http";
 import { FlightService } from "app/flight-search/flight.service";
 
