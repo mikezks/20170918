@@ -14,7 +14,9 @@ export class MouseMoveComponent implements OnInit, OnDestroy {
   private subscription: Subscription
   private buttonText: string;
 
-  constructor() { }
+  constructor() {
+    this.buttonText = "Subscribe";
+   }
 
   ngOnInit() {
     const oneSecond$ = Observable.timer(0, 1000);
@@ -26,10 +28,12 @@ export class MouseMoveComponent implements OnInit, OnDestroy {
   subscribe() {
     if (!this.subscription) {
       this.subscription = this.oneSecondMouseMove$.subscribe(result => console.log(result)); 
+      this.buttonText = "Unsubscribe";
     }
     else {
       this.subscription.unsubscribe(); 
       this.subscription = undefined;
+      this.buttonText = "Subscribe";
     }
   }
 
