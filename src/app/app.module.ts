@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,16 +9,19 @@ import { AppComponent } from './app.component';
 import { FlightSearchComponent } from "app/flight-search/flight-search.components";
 import { FlightService } from "app/flight-search/flight.service";
 import { BASE_URL } from "app/app.tokens";
+import { MouseMoveComponent } from './mouse-move/mouse-move.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   declarations: [
     AppComponent,
-    FlightSearchComponent
+    FlightSearchComponent,
+    MouseMoveComponent
   ],
   providers: [
     // { provide: FlightService, useClass: FlightService }
