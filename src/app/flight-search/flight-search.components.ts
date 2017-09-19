@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from "app/entities/flight";
 
-//               V----------------V--------- Explizit importiert
 import { Http, URLSearchParams, Headers } from "@angular/http";
-import { FlightService } from "app/flight-search/flight.service";
 
 @Component({
     selector: 'flight-search',
-    templateUrl: './flight-search.component.html',
-    providers: [FlightService]
+    templateUrl: './flight-search.component.html'
 })
 export class FlightSearchComponent implements OnInit {
 
@@ -19,21 +16,33 @@ export class FlightSearchComponent implements OnInit {
 
     //private http: Http;
 
-    constructor(private flightService: FlightService) { 
+    constructor(private http: Http) { 
         //this.http = http;
     }
 
     search(): void {
 
-            this
-            .flightService
-            .find(this.from, this.to)
-            .subscribe(
+        let url = 'http://www.angular.at/api/flight';
+
+        let search = new URLSearchParams();
+        search.set('from', this.from);
+        search.set('to', this.to);
+
+        let headers = new Headers();
+        headers.set('Accept', 'application/json');
+
+        const getData$ = this.http
+            .get(url, { search, headers})
+            .map(resp => resp.json());
+
+
+
+            getData$.subscribe(
                 (flights: Flight[]) => {
                     this.flights = flights;
                 },
                 (errResponse) => {
-                    console.error('Fehler beim Laden', errResponse);
+                    console.error('Error on loading', errResponse);
                 }
             );
 
