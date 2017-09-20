@@ -10,17 +10,21 @@ import { FlightSearchComponent } from "app/flight-search/flight-search.component
 import { FlightService } from "app/flight-search/flight.service";
 import { BASE_URL } from "app/app.tokens";
 import { MouseMoveComponent } from './mouse-move/mouse-move.component';
+import { AppRouterModule } from "app/app.routes";
+import { HomeComponent } from "app/home/home.component";
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    FlightSearchModule
+    FlightSearchModule,
+    AppRouterModule
   ],
   declarations: [
     AppComponent,
-    MouseMoveComponent
+    MouseMoveComponent,    
+    HomeComponent
   ],
   providers: [
     // { provide: FlightService, useClass: FlightService }
