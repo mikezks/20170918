@@ -2,14 +2,30 @@
 
 <div class="row">
 <div class="card">
-
+<form #f="ngForm">
     <div class="form-group">
         <label>From:</label>
-        <input [(ngModel)]="from" class="form-control">
+        <input 
+            name="from" 
+            [(ngModel)]="from" 
+            class="form-control"
+            required
+            minlength="3"
+            maxlength="30"
+            location="Graz,Hamburg,Nürnberg,Frankfurt,Wien,Zürich"
+            pattern="[A-Za-zöäüßÖÄÜ]*">
+
+        <div *ngIf="f?.controls['from']?.invalid && f?.controls['from']?.dirty">...Error <pre>{{ f?.controls['from']?.errors | json }}</pre>...</div>  
+        <div *ngIf="f?.controls['from']?.hasError('required')">...Required...</div>  
+        <div *ngIf="f?.controls['from']?.hasError('minlength')">...minlength...</div>  
+        <div *ngIf="f?.controls['from']?.hasError('maxlength')">...maxlength...</div>  
+        <div *ngIf="f?.controls['from']?.hasError('pattern')">...pattern...</div>  
+        <div *ngIf="f?.controls['from']?.hasError('location')">...location...</div>  
+
     </div>
     <div class="form-group">
         <label>To:</label>
-        <input [(ngModel)]="to" class="form-control">
+        <input name="to" [(ngModel)]="to" class="form-control">
     </div>
 
     <div class="form-group">
@@ -18,7 +34,7 @@
             (click)="search()" 
             [disabled]="!from || !to">Search</button>
     </div>
-
+</form>
 
 </div>
 </div>
@@ -27,8 +43,8 @@
     <div *ngFor="let f of flights" class="col col-lg-3 col-md-4 col-sm-6 col-xs-12">
         <flight-card 
             [item]="f" 
-            (selectedChange)="basket[f.id] = $event"></flight-card>
-            <!-- [(selected)]="basket[f.id]"></flight-card -->
+            [(selected)]="basket[f.id]"></flight-card>
+            <!-- (selectedChange)="basket[f.id] = $event" -->
     </div>
 </div>
 <!--
@@ -39,8 +55,8 @@
        
         <tr *ngFor="let f of flights" [class.active]="f === selectedFlight">
             <td>{{f.id}}</td>
-            <td>{{f.from | location:'short'}}</td>
-            <td>{{f.to | location:'long' }}</td>
+            <td>{{f.from | city:'short'}}</td>
+            <td>{{f.to | city:'long' }}</td>
             <td>{{f.date | date:'dd.MM.yyyy HH:mm'}}</td>
             <td><a (click)="select(f)">Select</a></td>
         </tr>
